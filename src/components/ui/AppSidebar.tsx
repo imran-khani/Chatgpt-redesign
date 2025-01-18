@@ -1,4 +1,12 @@
-import { LucideIcon, MessagesSquare, Plus } from "lucide-react";
+import {
+  ArrowUp,
+  ArrowUpRight,
+  LucideIcon,
+  MessagesSquare,
+  Moon,
+  Plus,
+  Power,
+} from "lucide-react";
 
 interface SidebarProps {
   title: string;
@@ -10,6 +18,7 @@ import { Avatar } from "@/components/ui/avatar";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -78,6 +87,30 @@ const AppSidebar = () => {
           <Plus />
           New Chat
         </Button>
+
+        {/* put on bottom */}
+        <div className="absolute bottom-20 right-0 left-0">
+          <SidebarFooter>
+            <div>
+              <Button className="bg-transparent text-black shadow-none hover:bg-transparent">
+                <ArrowUpRight />
+                Updates and Faqs
+              </Button>
+            </div>
+            <div>
+              <Button className="bg-transparent text-black shadow-none hover:bg-transparent">
+                <Moon />
+                Switch to Night mode
+              </Button>
+            </div>
+            <div>
+              <Button className="bg-transparent text-red-500 shadow-none hover:bg-transparent">
+                <Power />
+                Sign out
+              </Button>
+            </div>
+          </SidebarFooter>
+        </div>
       </SidebarContent>
     </Sidebar>
   );
