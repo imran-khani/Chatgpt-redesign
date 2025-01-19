@@ -1,5 +1,4 @@
 import {
-  ArrowUp,
   ArrowUpRight,
   LucideIcon,
   MessagesSquare,
