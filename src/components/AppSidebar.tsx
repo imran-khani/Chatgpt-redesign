@@ -50,7 +50,7 @@ const AppSidebar = () => {
   return (
     <Sidebar className="bg-sidebar-primary text-sidebar-primary-foreground dark">
       <SidebarContent className="px-3">
-        <div className="p-5 bg-white/30 mx-5 my-2 rounded-md">
+        <div className="p-5 bg-white/10 mx-5 my-2 rounded-md">
           <div className="flex gap-x-5">
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" />
@@ -61,7 +61,7 @@ const AppSidebar = () => {
               <span className="text-sm font-semibold leading-none">
                 Imran Khan
               </span>
-              <span className="text-xs leading-none text-muted-foreground">
+              <span className="text-xs leading-none text-green-500">
                 Free Account
               </span>
             </div>
