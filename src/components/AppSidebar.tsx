@@ -2,9 +2,9 @@ import {
   ArrowUpRight,
   LucideIcon,
   MessagesSquare,
-  Moon,
   Plus,
   Power,
+  Sun,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/sidebar";
 import { useState } from "react";
 import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 
 const AppSidebar = () => {
   const [chats, setChats] = useState<SidebarProps[]>([
@@ -48,9 +48,9 @@ const AppSidebar = () => {
     },
   ]);
   return (
-    <Sidebar>
+    <Sidebar className="bg-sidebar-primary text-sidebar-primary-foreground dark">
       <SidebarContent className="px-3">
-        <div className="p-5 bg-white mx-5 my-2 rounded-md">
+        <div className="p-5 bg-white/30 mx-5 my-2 rounded-md">
           <div className="flex gap-x-5">
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" />
@@ -98,8 +98,8 @@ const AppSidebar = () => {
             </div>
             <div>
               <Button className="bg-transparent text-black shadow-none hover:bg-transparent">
-                <Moon />
-                Switch to Night mode
+                <Sun />
+                Switch to Light mode
               </Button>
             </div>
             <div>

@@ -1,4 +1,4 @@
-import AppSidebar from "@/components/ui/AppSidebar";
+import AppSidebar from "@/components/AppSidebar";
 import { Outlet } from "react-router-dom";
 
 const HomeLayout = () => {
@@ -7,7 +7,7 @@ const HomeLayout = () => {
       <div className="max-w-[600px]">
         <AppSidebar />
       </div>
-         <div className="flex-1 p-5">
+         <div className="flex-1">
             <Outlet />
          </div>
     </div>
