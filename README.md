@@ -1,3 +1,63 @@
+# AssanGPT
+
+A modern AI chat interface built with React, TypeScript, and Tailwind CSS.
+
+## Tech Stack
+
+- **Frontend Framework:** React with TypeScript
+- **Styling:** Tailwind CSS
+- **UI Components:** shadcn/ui
+- **Icons:** Lucide Icons
+- **Build Tool:** Vite
+
+## Features
+
+- 🌓 Dark/Light theme support
+- 🎨 Custom UI components with shadcn/ui
+- 📱 Responsive design
+- 💅 Modern, clean interface
+- 🎯 Type-safe development with TypeScript
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── chat/
+│   │   ├── ChatInput.tsx        # Input component with send button
+│   │   ├── ChatMessage.tsx      # Individual message component
+│   │   ├── ChatThread.tsx       # Messages container
+│   │   └── MessageSkeleton.tsx  # Loading state for messages
+│   ├── ui/                      # shadcn components
+│   └── layout/
+│       ├── AppSidebar.tsx       # Sidebar navigation
+│       └── Header.tsx           # Top header if needed
+├── lib/
+│   ├── ai/
+│   │   ├── types.ts            # AI response types
+│   │   └── api.ts              # AI API integration
+│   └── utils.ts                # Utility functions
+├── hooks/
+│   └── useChat.ts              # Chat logic and state management
+├── store/
+│   └── chat.ts                 # Global chat state if needed
+├── types/
+│   └── chat.ts                 # Type definitions
+├── constants/
+│   └── ai.ts                   # API endpoints, configs
+└── layouts/
+    └── HomeLayout.tsx          # Main layout wrapper
+```
+
+## Key Directories
+
+- **/components/chat**: All chat-specific components
+- **/lib/ai**: AI service integration
+- **/hooks**: Custom React hooks
+- **/store**: State management
+- **/types**: TypeScript definitions
+- **/constants**: Configuration constants
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
