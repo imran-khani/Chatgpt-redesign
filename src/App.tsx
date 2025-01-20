@@ -3,7 +3,7 @@ import HomeLayout from "./Layout/HomeLayout";
 import { SidebarProvider } from "./components/ui/sidebar";
 import Main from "./components/main/Main";
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
@@ -12,6 +12,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <Main />,
       },
+      {
+        path: "/chat/:chatId",
+        element: <Main />
+      }
     ]
   },
 ]);

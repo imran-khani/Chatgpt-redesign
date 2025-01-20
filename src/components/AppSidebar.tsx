@@ -5,6 +5,7 @@ import {
   Plus,
   Power,
   Sun,
+  PlusCircle,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -28,25 +29,13 @@ import {
 import { useState } from "react";
 import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Button } from "@/components/ui/button";
+import { useChat } from "@/hooks/useChat";
+import { Link, useParams } from "react-router-dom";
 
 const AppSidebar = () => {
-  const [chats, setChats] = useState<SidebarProps[]>([
-    {
-      title: "How to get started...",
-      url: "/",
-      icon: MessagesSquare,
-    },
-    {
-      title: "How to get started...",
-      url: "/",
-      icon: MessagesSquare,
-    },
-    {
-      title: "How to get started...",
-      url: "/",
-      icon: MessagesSquare,
-    },
-  ]);
+  const { chats, createNewChat } = useChat();
+  const { chatId } = useParams();
+
   return (
     <Sidebar className="bg-sidebar-primary text-sidebar-primary-foreground dark">
       <SidebarContent className="px-3">
@@ -71,19 +60,24 @@ const AppSidebar = () => {
           <SidebarGroupLabel>Chats</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {chats.map((item, index) => (
-                <SidebarMenuItem key={index}>
+              {chats.map((chat) => (
+                <SidebarMenuItem key={chat.id}>
                   <SidebarMenuButton>
-                    <item.icon className="mr-2 h-4 w-4" />
-                    {item.title}
+                    <Link to={`/chat/${chat.id}`}>
+                      <MessagesSquare className="mr-2 h-4 w-4" />
+                      {chat.title}
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-        <Button className="items-cebter justify-start bg-green-600 hover:bg-green-900">
-          <Plus />
+        <Button
+          onClick={createNewChat}
+          className="w-full mb-4 bg-emerald-600 hover:bg-emerald-700"
+        >
+          <PlusCircle className="mr-2 h-4 w-4" />
           New Chat
         </Button>
 
