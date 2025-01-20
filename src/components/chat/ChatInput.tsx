@@ -20,24 +20,26 @@ export function ChatInput({ onSend, isLoading }: ChatInputProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="p-4">
-      <div className="relative">
-        <Input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Type a message..."
-          className="pr-12"
-          disabled={isLoading}
-        />
-        <Button 
-          size="icon"
-          type="submit"
-          disabled={isLoading}
-          className="absolute right-1 top-1/2 -translate-y-1/2"
-        >
-          <SendHorizontal className="h-4 w-4" />
-        </Button>
-      </div>
-    </form>
+    <div className="fixed bottom-0 left-0 right-0 bg-background/80 backdrop-blur-sm border-t">
+      <form onSubmit={handleSubmit} className="max-w-3xl mx-auto p-4">
+        <div className="relative">
+          <Input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Type a message..."
+            className="pr-12 py-6 bg-background border-muted-foreground/20"
+            disabled={isLoading}
+          />
+          <Button 
+            size="icon"
+            type="submit"
+            disabled={isLoading}
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-emerald-600 hover:bg-emerald-700"
+          >
+            <SendHorizontal className="h-4 w-4" />
+          </Button>
+        </div>
+      </form>
+    </div>
   )
 } 

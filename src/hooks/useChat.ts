@@ -1,10 +1,17 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { Message } from '@/lib/ai/types'
 import { generateResponse } from '@/lib/ai/api'
 
 export function useChat() {
-  const [messages, setMessages] = useState<Message[]>([])
+  const [messages, setMessages] = useState<Message[]>(() => {
+    const saved = localStorage.getItem('chat-messages')
+    return saved ? JSON.parse(saved) : []
+  })
   const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    localStorage.setItem('chat-messages', JSON.stringify(messages))
+  }, [messages])
 
   const sendMessage = async (content: string) => {
     // Add user message
