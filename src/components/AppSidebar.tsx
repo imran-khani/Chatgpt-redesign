@@ -23,7 +23,6 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { useState } from "react";
@@ -38,72 +37,62 @@ const AppSidebar = () => {
 
   return (
     <Sidebar className="bg-sidebar-primary text-sidebar-primary-foreground dark">
-      <SidebarContent className="px-3">
+      <SidebarContent className="flex flex-col h-full px-3">
+        {/* Profile Section */}
         <div className="p-5 bg-white/10 mx-5 my-2 rounded-md">
           <div className="flex gap-x-5">
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
-
             <div className="flex flex-col gap-2">
-              <span className="text-sm font-semibold leading-none">
-                Imran Khan
-              </span>
-              <span className="text-xs leading-none text-green-500">
-                Free Account
-              </span>
+              <span className="text-sm font-semibold leading-none">Imran Khan</span>
+              <span className="text-xs leading-none text-green-500">Free Account</span>
             </div>
           </div>
         </div>
-        <SidebarGroup>
-          <SidebarGroupLabel>Chats</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {chats.map((chat) => (
-                <SidebarMenuItem key={chat.id}>
-                  <SidebarMenuButton>
-                    <Link to={`/chat/${chat.id}`}>
-                      <MessagesSquare className="mr-2 h-4 w-4" />
-                      {chat.title}
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+
+        {/* New Chat Button */}
         <Button
           onClick={createNewChat}
-          className="w-full mb-4 bg-emerald-600 hover:bg-emerald-700"
+          className="mb-4 bg-emerald-600 hover:bg-emerald-700"
         >
           <PlusCircle className="mr-2 h-4 w-4" />
           New Chat
         </Button>
 
-        {/* put on bottom */}
-        <div className="absolute bottom-20 right-0 left-0">
-          <SidebarFooter>
-            <div>
-              <Button className="bg-transparent text-sidebar-primary-foreground shadow-none hover:bg-transparent">
-                <ArrowUpRight />
-                Updates and Faqs
-              </Button>
-            </div>
-            <div>
-              <Button className="bg-transparent text-sidebar-primary-foreground shadow-none hover:bg-transparent">
-                <Sun />
-                Switch to Light mode
-              </Button>
-            </div>
-            <div>
-              <Button className="bg-transparent text-red-500 shadow-none hover:bg-transparent">
-                <Power />
-                Sign out
-              </Button>
-            </div>
-          </SidebarFooter>
-        </div>
+        {/* Chat List */}
+        <SidebarGroup className="flex-1">
+          <SidebarGroupLabel>Chats</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {chats.map((chat) => (
+                <Link key={chat.id} to={`/chat/${chat.id}`}>
+                  <SidebarMenuItem className={chatId === chat.id ? 'bg-white/10' : ''}>
+                    <MessagesSquare className="mr-2 h-4 w-4" />
+                    {chat.title}
+                  </SidebarMenuItem>
+                </Link>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        {/* Footer */}
+        <SidebarFooter className="mt-auto">
+          <Button className="w-full justify-start bg-transparent text-sidebar-primary-foreground hover:bg-white/10">
+            <ArrowUpRight className="mr-2 h-4 w-4" />
+            Updates and Faqs
+          </Button>
+          <Button className="w-full justify-start bg-transparent text-sidebar-primary-foreground hover:bg-white/10">
+            <Sun className="mr-2 h-4 w-4" />
+            Switch to Light mode
+          </Button>
+          <Button className="w-full justify-start bg-transparent text-red-500 hover:bg-white/10">
+            <Power className="mr-2 h-4 w-4" />
+            Sign out
+          </Button>
+        </SidebarFooter>
       </SidebarContent>
     </Sidebar>
   );

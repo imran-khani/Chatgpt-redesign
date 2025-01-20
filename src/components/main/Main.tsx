@@ -16,11 +16,15 @@ export default function Main() {
   const navigate = useNavigate()
   const location = useLocation()
 
+  // Only run once when component mounts
   useEffect(() => {
     if (location.pathname === '/') {
-      createNewChat()
+      const timeout = setTimeout(() => {
+        createNewChat()
+      }, 0)
+      return () => clearTimeout(timeout)
     }
-  }, [location.pathname, createNewChat])
+  }, []) // Empty dependency array
 
   return (
     <div className="flex flex-col items-center min-h-screen">

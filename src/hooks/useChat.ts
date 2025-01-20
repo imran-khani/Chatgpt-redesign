@@ -43,11 +43,9 @@ export function useChat() {
 
   const sendMessage = async (content: string) => {
     if (!chatId) {
-      console.log('No chatId found')
-      return
+      createNewChat();
+      return;
     }
-    
-    console.log('Sending message:', content, 'to chat:', chatId)
     
     const userMessage: Message = {
       role: 'user',
@@ -55,41 +53,34 @@ export function useChat() {
       timestamp: new Date()
     }
     
-    setChats(prev => {
-      const newChats = prev.map(chat => {
-        if (chat.id === chatId) {
-          console.log('Updating chat:', chat.id)
-          return {
+    setChats(prev => prev.map(chat => 
+      chat.id === chatId 
+        ? {
             ...chat,
             messages: [...chat.messages, userMessage],
             title: chat.messages.length === 0 ? content.slice(0, 30) : chat.title
           }
-        }
-        return chat
-      })
-      console.log('New chats state:', newChats)
-      return newChats
-    })
+        : chat
+    ))
     
     setIsLoading(true)
 
     try {
       const aiResponse = await generateResponse(content)
-      console.log('AI Response:', aiResponse)
+      const assistantMessage: Message = {
+        role: 'assistant',
+        content: aiResponse.content || 'Sorry, I could not generate a response.',
+        timestamp: new Date()
+      }
       
-      setChats(prev => prev.map(chat => {
-        if (chat.id === chatId) {
-          return {
-            ...chat,
-            messages: [...chat.messages, {
-              role: 'assistant',
-              content: aiResponse.content || 'Sorry, I could not generate a response.',
-              timestamp: new Date()
-            }]
-          }
-        }
-        return chat
-      }))
+      setChats(prev => prev.map(chat => 
+        chat.id === chatId 
+          ? {
+              ...chat,
+              messages: [...chat.messages, assistantMessage]
+            }
+          : chat
+      ))
     } catch (error) {
       console.error('Error:', error)
     } finally {
