@@ -11,16 +11,16 @@ export function ChatMessage({ message }: ChatMessageProps) {
   
   return (
     <div className={`flex gap-3 ${isUser ? 'flex-row-reverse' : 'flex-row'} mb-4`}>
-      <Avatar className={`h-8 w-8 ${isUser ? 'bg-primary' : 'bg-emerald-600'}`}>
-        <AvatarFallback className="text-sm text-white">
+      <Avatar className={`h-8 w-8 ${isUser ? 'bg-primary' : 'bg-emerald-600'} shrink-0`}>
+        <AvatarFallback className="text-sm text-background">
           {isUser ? 'U' : 'A'}
         </AvatarFallback>
       </Avatar>
       <Card className={`
-        ${isUser ? 'bg-primary/10 border-primary/20' : 'bg-muted/50 border-muted/50'}
-        max-w-[80%]
+        ${isUser ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}
+        max-w-[80%] shadow-md
       `}>
-        <CardContent className="p-3 text-sm">
+        <CardContent className="p-3 text-sm whitespace-pre-wrap">
           {message.content}
         </CardContent>
       </Card>
