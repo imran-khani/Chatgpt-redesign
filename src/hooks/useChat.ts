@@ -42,9 +42,18 @@ export function useChat() {
   }
 
   const sendMessage = async (content: string) => {
-    if (!chatId) {
-      createNewChat();
-      return;
+    let currentChatId = chatId;
+    
+    if (!currentChatId) {
+      const newChat: Chat = {
+        id: Date.now().toString(),
+        title: content.slice(0, 30),
+        messages: [],
+        createdAt: new Date()
+      }
+      setChats(prev => [newChat, ...prev])
+      currentChatId = newChat.id
+      navigate(`/chat/${newChat.id}`)
     }
     
     const userMessage: Message = {
@@ -54,11 +63,10 @@ export function useChat() {
     }
     
     setChats(prev => prev.map(chat => 
-      chat.id === chatId 
+      chat.id === currentChatId 
         ? {
             ...chat,
-            messages: [...chat.messages, userMessage],
-            title: chat.messages.length === 0 ? content.slice(0, 30) : chat.title
+            messages: [...chat.messages, userMessage]
           }
         : chat
     ))
@@ -74,7 +82,7 @@ export function useChat() {
       }
       
       setChats(prev => prev.map(chat => 
-        chat.id === chatId 
+        chat.id === currentChatId 
           ? {
               ...chat,
               messages: [...chat.messages, assistantMessage]

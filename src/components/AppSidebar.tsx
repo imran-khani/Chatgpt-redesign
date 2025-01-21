@@ -1,18 +1,11 @@
 import {
   ArrowUpRight,
-  LucideIcon,
   MessagesSquare,
-  Plus,
   Power,
   Sun,
   PlusCircle,
 } from "lucide-react";
 
-interface SidebarProps {
-  title: string;
-  url: string;
-  icon: LucideIcon;
-}
 
 import { Avatar } from "@/components/ui/avatar";
 import {
@@ -25,7 +18,6 @@ import {
   SidebarMenu,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { useState } from "react";
 import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Button } from "@/components/ui/button";
 import { useChat } from "@/hooks/useChat";
